@@ -7,7 +7,7 @@
 
 USAGE () {
 	echo "\n\nUSAGE : -->loadZip.sh ROM.zip Gapps.ZIP SUROOT.zip \n
-	-->FORZA ROMA"
+	-->FORZA ROMA - Pallotta Vattene"
 }
 
 CHECK () {
