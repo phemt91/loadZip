@@ -20,9 +20,9 @@ CHECK () {
 
 
 ADBUPLOAD () {
-	
 
-	echo ${ROM}	
+
+	echo ${ROM}
 	adb push ${ROM} /sdcard &&
 	adb push ${GAPS} /sdcard &&
 	adb push ${SUROOT} /sdcard &&
@@ -41,8 +41,18 @@ BANNER () {
 LIM
 }
 
-BANNER
-USAGE
-CHECK
-ADBUPLOAD
 
+if [ "$#" -ne 3 ]
+then
+    echo "Non sono stati inseriti i file necessari "
+    USAGE
+
+
+else
+  BANNER
+  USAGE
+  CHECK
+  ADBUPLOAD
+
+
+fi
