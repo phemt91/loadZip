@@ -5,6 +5,18 @@
  SUROOT=$3
 
 
+DROZ () {
+
+  mkdir /tmp/DrozerTmp                         && \
+  cd /tmp/DrozerTmp                            && \
+  wget https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk -O drozer.apk && \
+  adb install drozer.apk                       && \
+  cd ..                                        && \
+  rm -r DrozerTmp
+
+
+}
+
 USAGE () {
 	echo "\n\nUSAGE : -->loadZip.sh ROM.zip Gapps.ZIP SUROOT.zip \n
 	-->FORZA ROMA - Pallotta Vattene"
@@ -43,16 +55,16 @@ LIM
 
 
 if [ "$#" -ne 3 ]
-then
-    echo "Non sono stati inseriti i file necessari "
-    USAGE
+ then
+     echo "Non sono stati inseriti i file necessari "
+     USAGE
 
 
-else
+ else
+  DROZ
   BANNER
   USAGE
   CHECK
   ADBUPLOAD
-
 
 fi
