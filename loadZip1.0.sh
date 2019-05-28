@@ -6,7 +6,7 @@
 
 
 DROZ () {
-
+  rm -r /tmp/DrozerTmp                         && \
   mkdir /tmp/DrozerTmp                         && \
   cd /tmp/DrozerTmp                            && \
   wget https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk -O drozer.apk && \
@@ -61,10 +61,18 @@ if [ "$#" -ne 3 ]
 
 
  else
-  DROZ
   BANNER
   USAGE
   CHECK
   ADBUPLOAD
+
+  while true; do
+    read -p "Installare Drozer?" yn
+    case $yn in
+        [Yy]* ) echo "Install in progress" ;DROZ;;
+        [Nn]* ) exit;;
+        * ) echo "Rispondere yes or no.";;
+    esac
+  done
 
 fi
