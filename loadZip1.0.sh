@@ -15,7 +15,7 @@
          echo "3. Install Drozer"
          echo "4. Install Gapps"
          echo "q. ESCI"
-           echo -en "> "
+
 
  }
 
@@ -24,7 +24,7 @@
          i=-1
          while [ "$i" != "q" ]; do
                  MENU
-                 read i
+                 read -p "--> " i
                  i=`echo $i | tr '[A-Z]' '[a-z]'`
                  case "$i" in
                          "1")
@@ -56,7 +56,7 @@ ROM () {
 
 
 echo "Inserire ROM.zip\n"
-read ROM
+read -p "--> " ROM
 echo "\n######################\n"
 echo "#####Check Upload#####\n\n"
 echo "ROM	--> ${ROM}"
@@ -71,7 +71,7 @@ SUPERSU () {
 
 
 echo "Inserire SuperSu.zip\n"
-read SUROOT
+read -p "--> " SUROOT
 echo "\n######################\n"
 echo "#####Check Upload#####\n\n"
 echo "SuperSU	--> ${SUROOT}"
@@ -83,7 +83,7 @@ echo "\n######################\n"
 
 
 DROZ () {
-  if [ -d /tmp/DrozerTmp]
+  if [ -d /tmp/DrozerTmp ]
   then
     rm -r /tmp/DrozerTmp
   else
@@ -102,8 +102,8 @@ DROZ () {
 GAPPS () {
 
 
-echo "Inserire GAPPS.zip\n"
-read GAPS
+echo "Load GAPPS.zip\n"
+read -p "--> " GAPS
 echo "\n######################\n"
 echo "#####Check Upload#####\n\n"
 echo "Gapps	--> ${GAPS}"
@@ -111,32 +111,6 @@ adb push ${GAPS} /sdcard
 echo "\n######################\n"
 
 
-}
-
-
-
-USAGE () {
-	echo "\n\nUSAGE : -->loadZip.sh ROM.zip Gapps.ZIP SUROOT.zip \n
-	-->FORZA ROMA - Pallotta Vattene"
-}
-
-CHECK () {
-	echo "\n######################\n"
-	echo "#####Check Upload#####\n\n"
-	echo "ROM	--> ${ROM}"
-	echo "Gapps	--> ${GAPS}"
-	echo "SuperSU	--> ${SUROOT}"
-}
-
-
-ADBUPLOAD () {
-
-
-	echo ${ROM}
-	adb push ${ROM} /sdcard &&
-	adb push ${GAPS} /sdcard &&
-	adb push ${SUROOT} /sdcard &&
-	echo "DONE"
 }
 
 
@@ -155,26 +129,3 @@ LIM
 BANNER
 USAGE
 MENU_EXE
-
-# if [ "$#" -ne 3 ]
-#  then
-#      echo "Non sono stati inseriti i file necessari "
-#      USAGE
-#
-#
-#  else
-#   BANNER
-#   USAGE
-#   CHECK
-#   ADBUPLOAD
-#
-#   while true; do
-#     read -p "Installare Drozer?" yn
-#     case $yn in
-#         [Yy]* ) echo "Install in progress" ;DROZ;;
-#         [Nn]* ) exit;;
-#         * ) echo "Rispondere yes or no.";;
-#     esac
-#   done
-#
-# fi
