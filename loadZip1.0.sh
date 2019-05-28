@@ -83,14 +83,18 @@ echo "\n######################\n"
 
 
 DROZ () {
-  rm -r /tmp/DrozerTmp                         && \
-  mkdir /tmp/DrozerTmp                         && \
-  cd /tmp/DrozerTmp                            && \
-  wget https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk -O drozer.apk && \
-  adb install drozer.apk                       && \
-  cd ..                                        && \
-  rm -r DrozerTmp
+  if [ -d /tmp/DrozerTmp]
+  then
+    rm -r /tmp/DrozerTmp
+  else
 
+    mkdir /tmp/DrozerTmp                         && \
+    cd /tmp/DrozerTmp                            && \
+    wget https://github.com/mwrlabs/drozer/releases/download/2.3.4/drozer-agent-2.3.4.apk -O drozer.apk && \
+    adb install drozer.apk                       && \
+    cd ..                                        && \
+    rm -r DrozerTmp
+  fi
 
 }
 
