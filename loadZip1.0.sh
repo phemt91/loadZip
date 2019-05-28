@@ -79,7 +79,8 @@ LOADCACERT(){
 
   adb shell "mv /sdcard/${CERTX} /system/etc/security/cacerts/"
   adb shell "chmod 644 /system/etc/security/cacerts/${CERTX}"
-  echo "done"
+  echo "\n\n ### DONE ###"
+  echo "##################"
 
 
 }
