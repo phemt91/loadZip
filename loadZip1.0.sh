@@ -14,6 +14,7 @@
          echo "2. Load SuperSU"
          echo "3. Install Drozer"
          echo "4. Install Gapps"
+         echo "5. Install Burp Cert "
          echo "q. ESCI"
 
 
@@ -39,6 +40,9 @@
                          "4")
                          GAPPS
                          ;;
+                         "5")
+                         LOADCACERT
+                         ;;
                          "q")
                          echo "GoodBye"
                          exit 0
@@ -51,6 +55,34 @@
 
  }
 
+
+LOADCACERT(){
+
+  echo "Insert .cer file"
+  read CERT
+
+  openssl x509 -inform DER -in ${CERT} -out cacert.pem             &&
+  CODECER=$(openssl x509 -inform PEM -subject_hash_old -in cacert.pem |head -1)  &&
+  echo  " --> ${CODECER}"
+  mv cacert.pem ${CODECER}.0
+
+  CERTX=${CODECER}.0
+  echo ${CERTX}
+
+  echo "Reboot root device"
+  echo "##################"
+
+
+  adb root
+  adb remount
+  adb push ${CERTX}   /sdcard/
+
+  adb shell "mv /sdcard/${CERTX} /system/etc/security/cacerts/"
+  adb shell "chmod 644 /system/etc/security/cacerts/${CERTX}"
+  echo "done"
+
+
+}
 
 ROM () {
 
