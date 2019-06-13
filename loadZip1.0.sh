@@ -15,10 +15,22 @@
          echo "3. Install Drozer"
          echo "4. Install Gapps"
          echo "5. Install Burp Cert "
+         echo "6. Start Frida-Server"
          echo "q. ESCI"
 
 
  }
+
+ FRIDA () {
+
+
+		adb root # might be required
+		adb push frida-server /data/local/tmp/ 
+		adb shell "chmod 755 /data/local/tmp/frida-server"
+		adb shell "/data/local/tmp/frida-server &"
+
+
+ } 
 
  MENU_EXE() {
 
@@ -42,6 +54,9 @@
                          ;;
                          "5")
                          LOADCACERT
+                         ;;
+                         "6")
+                         FRIDA
                          ;;
                          "q")
                          echo "GoodBye"
