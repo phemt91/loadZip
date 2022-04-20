@@ -2,5 +2,5 @@
 <h1>Root Load ADB ZIP</h1>
 
 <p> Export burp Certificate in DER format </p>
-<p> Rename certifacate.cer</p>
+<p> Rename certificate.cer</p>
 <p> Copy and Rename your FridaServer in frida-server</p>
